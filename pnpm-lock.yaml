@@ -59,6 +59,9 @@ importers:
       yamljs:
         specifier: ^0.3.0
         version: 0.3.0
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       nodemon:
         specifier: ^2.0.9
@@ -735,6 +738,9 @@ packages:
   yamljs@0.3.0:
     resolution: {integrity: sha512-C/FsVVhht4iPQYXOInoxUM/1ELSf9EsgKH34FofQOp6hwCPrW4vG4w5++TED3xRUo8gD7l0P1J1dLlDYzODsTQ==}
     hasBin: true
+
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
 snapshots:
 
@@ -1432,3 +1438,5 @@ snapshots:
     dependencies:
       argparse: 1.0.10
       glob: 7.2.3
+
+  zod@4.3.6: {}

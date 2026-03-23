@@ -25,7 +25,8 @@
     "start": "^5.1.0",
     "swagger-ui-express": "^4.1.6",
     "xss-clean": "^0.1.1",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.9"

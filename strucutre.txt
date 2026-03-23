@@ -1,0 +1,29 @@
+src
+│
+├── controllers
+│     AuthController.js
+│
+├── services
+│     AuthService.js
+│     UserService.js
+│
+├── models
+│     User.js
+│
+├── routes
+│     authRoutes.js
+│
+├── middleware
+│     authMiddleware.js
+│     validate.js
+│
+├── validators
+│     auth.schema.js
+│
+├── errors
+│     BadRequestError.js
+│
+├── utils
+│     jwt.js
+│
+└── app.js
