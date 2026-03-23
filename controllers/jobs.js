@@ -14,10 +14,11 @@ const deleteJob = async (req, res) => {
   res.send(`job deleted`);
 };
 
-module.exports = {
+export {
   getAllJobs,
   getJob,
   createJob,
   updateJob,
   deleteJob,
 };
+

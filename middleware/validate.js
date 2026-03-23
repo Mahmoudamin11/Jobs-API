@@ -1,6 +1,6 @@
-const { BadRequestError } = require("../errors")
+import {BadRequestError} from "../errors/index.js"
 
-const validatation = (schema) => (req, res, next) => {
+const validation = (schema) => (req, res, next) => {
   const result = schema.safeParse(req.body)
 
   if (!result.success) {
@@ -11,4 +11,4 @@ const validatation = (schema) => (req, res, next) => {
   next()
 }
 
-module.exports = validatation
+export default validation

@@ -1,29 +1,26 @@
-require("dotenv").config();
-require("express-async-errors");
-const express = require("express");
-const app = express();
+import "dotenv/config";
+import "express-async-errors";
+import express from "express";
 
-app.use(express.json());
 // connect DB
-const connectDB = require("./db/connect");
+import connectDB from "./db/connect.js";
 
 // routers
-const authRouter = require("./routes/auth");
-const jobRouter = require("./routes/jobs");
+import authRouter from "./routes/auth.js";
+import jobRouter from "./routes/jobs.js";
+
+// error handler
+import notFoundMiddleware from "./middleware/not-found.js";
+import errorHandlerMiddleware from "./middleware/error-handler.js";
+
+const app = express();
+
+
+app.use(express.json());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", jobRouter);
 
-// error handler
-const notFoundMiddleware = require("./middleware/not-found");
-const errorHandlerMiddleware = require("./middleware/error-handler");
-
-// extra packages
-
-// routes
-app.get("/", (req, res) => {
-  res.send("jobs api");
-});
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

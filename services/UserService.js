@@ -1,4 +1,4 @@
-const User = require("../db/models/User.js");
+import User from "../db/models/User.js";
 
 class UserService {
   async findByEmail(email) {
@@ -9,4 +9,4 @@ class UserService {
   }
 }
 
-module.exports = UserService;
+export default UserService;

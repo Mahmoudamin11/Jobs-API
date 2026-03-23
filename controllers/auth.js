@@ -1,33 +1,22 @@
-const AuthService  = require("../services/AuthService")
+import AuthService from "../services/AuthService.js";
+import { StatusCodes } from "http-status-codes";
 
-const { StatusCodes } = require("http-status-codes");
-
-// const register = async (req, res) => {
-//   const body = req.body;
-//   const user = await User.create(body);
-//   res.status(StatusCodes.CREATED).json(user);
-// };
-
-// const login = async (req, res) => {
-//   res.send(`login user`);
-// };
-
-// module.exports = {
-//   register,
-//   login,
-// };
-
-export class AuthController {
+class AuthController {
   constructor() {
     this.authService = new AuthService();
   }
 
   register = async (req, res, next) => {
-    try {
+    // try {
+      console.log("Entered Here", this.authService);
+
       const user = await this.authService.register(req.body);
       res.status(StatusCodes.CREATED).json(user);
-    } catch (error) {
-      next(error);
-    }
+    // } catch (error) {
+    //   console.log("Error in register:", error);
+    //   next(error);
+    // }
   };
 }
+
+export default AuthController;

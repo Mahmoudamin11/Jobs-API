@@ -1,6 +1,7 @@
-const { CustomAPIError } = require("../errors");
-const { StatusCodes } = require("http-status-codes");
+import { StatusCodes } from "http-status-codes";
+import { CustomAPIError } from "../errors/index.js";
 const errorHandlerMiddleware = (err, req, res, next) => {
+  console.log("Error caught:", err);
   if (err instanceof CustomAPIError) {
     return res
       .status(err.statusCode)
@@ -9,4 +10,4 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err });
 };
 
-module.exports = errorHandlerMiddleware;
+export default errorHandlerMiddleware;

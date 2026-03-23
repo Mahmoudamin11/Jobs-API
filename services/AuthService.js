@@ -1,5 +1,6 @@
-const BadRequestError  = require("../errors");
-const UserService = require("../services");
+
+import { BadRequestError } from "../errors/index.js";
+import UserService from "./UserService.js";
 
 class AuthService {
   constructor() {
@@ -19,4 +20,4 @@ class AuthService {
   }
 }
 
-module.exports = AuthService
+export default AuthService;
