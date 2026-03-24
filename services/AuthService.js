@@ -8,14 +8,15 @@ class AuthService {
   async register(data) {
     const existingUser = await this.userService.findByEmail(data.email);
     if (existingUser) throw new BadRequestError("User already exists");
-    // hashing the data.password
-    
-    // generate token
-    // return the user and the token
 
     const user = await this.userService.createUser(data);
-    const token = "token";
-    return { user, token };
+
+    // generate token
+    const token = user.createJWT();
+    // get user created
+    const newUser = user.getUser();
+
+    return { user: { ...newUser, token } };
   }
 }
 
