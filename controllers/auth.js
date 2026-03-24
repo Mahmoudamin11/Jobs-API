@@ -7,15 +7,10 @@ class AuthController {
   }
 
   register = async (req, res, next) => {
-    // try {
-      console.log("Entered Here", this.authService);
+    console.log("Entered Here", this.authService);
 
-      const user = await this.authService.register(req.body);
-      res.status(StatusCodes.CREATED).json(user);
-    // } catch (error) {
-    //   console.log("Error in register:", error);
-    //   next(error);
-    // }
+    const user = await this.authService.register(req.body);
+    res.status(StatusCodes.CREATED).json(user);
   };
 }
 

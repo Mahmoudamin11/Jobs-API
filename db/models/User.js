@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
@@ -26,4 +27,11 @@ const UserSchema = new Schema(
   { timestamps: true },
 );
 
+UserSchema.pre("save", async function () {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(this.password, salt);
+  // "this" referes to the current document (User)
+  this.password = hashedPassword;
+  // next();
+});
 export default model("User", UserSchema);
