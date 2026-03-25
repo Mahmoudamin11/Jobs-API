@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 import generateToken from "../../utils/jwt.js";
+import { UnauthenticatedError } from "../../errors/index.js";
 
 const UserSchema = new Schema(
   {
@@ -22,7 +23,7 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true,
-      select: false,
+      // select: false,
     },
   },
   { timestamps: true },
@@ -34,6 +35,10 @@ UserSchema.pre("save", async function () {
   this.password = hashedPassword;
 });
 
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+  const isMatch = await bcrypt.compare(candidatePassword, this.password);
+  if (!isMatch) throw new UnauthenticatedError("Invalid credentials");
+};
 UserSchema.methods.createJWT = function () {
   const user = { ...this };
   return generateToken(user._doc);

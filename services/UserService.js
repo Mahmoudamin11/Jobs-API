@@ -1,9 +1,10 @@
 import User from "../db/models/User.js";
+import UnauthenticatedError from "../errors/unauthenticated.js";
 
 class UserService {
-
   async findByEmail(email) {
-    return await User.findOne({ email });
+    const user = await User.findOne({ email });
+    return user;
   }
   async createUser(data) {
     return await User.create(data);

@@ -1,4 +1,4 @@
-import { BadRequestError } from "../errors/index.js";
+import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
 import UserService from "./UserService.js";
 
 class AuthService {
@@ -13,10 +13,16 @@ class AuthService {
 
     // generate token
     const token = user.createJWT();
-    // get user created
-    const newUser = user.getUser();
 
-    return { user:{...newUser}, token };
+    return { user: { ...user.getUser() }, token };
+  }
+  async login(data) {
+    const { email, password } = data;
+    const user = await this.userService.findByEmail(email);
+    if (!user) throw new UnauthenticatedError("Invalid credentials");
+    await user.comparePassword(password);
+    const token = user.createJWT();
+    return { user: { ...user.getUser() }, token };
   }
 }
 
