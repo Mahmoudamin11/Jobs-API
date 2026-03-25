@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
-import jwt from "jsonwebtoken";
+import generateToken from "../../utils/jwt.js";
 
 const UserSchema = new Schema(
   {
@@ -35,9 +35,8 @@ UserSchema.pre("save", async function () {
 });
 
 UserSchema.methods.createJWT = function () {
-  return jwt.sign({ id: this._id, email: this.email }, process.env.JWT_SECRET, {
-    expiresIn: "7d",
-  });
+  const user = { ...this };
+  return generateToken(user._doc);
 };
 
 UserSchema.methods.getUser = function () {

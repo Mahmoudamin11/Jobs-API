@@ -16,7 +16,7 @@ class AuthService {
     // get user created
     const newUser = user.getUser();
 
-    return { user: { ...newUser, token } };
+    return { user:{...newUser}, token };
   }
 }
 
