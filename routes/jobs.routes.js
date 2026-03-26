@@ -6,8 +6,6 @@ import jobSchema from "../validators/job.schema.js";
 
 const router = express.Router();
 
-console.log("validation", typeof validation(jobSchema)); // should be "function"
-console.log("job controller", typeof jobController.createJob); // should be "function"
 
 router
   .route("/")

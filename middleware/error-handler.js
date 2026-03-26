@@ -2,8 +2,6 @@ import { StatusCodes } from "http-status-codes";
 import { CustomAPIError } from "../errors/index.js";
 
 const errorHandlerMiddleware = (err, req, res, next) => {
-  console.log("error caught", err);
-  
   if (err instanceof CustomAPIError) {
     return res
       .status(err.statusCode)

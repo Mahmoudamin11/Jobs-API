@@ -6,7 +6,8 @@ class JobController {
     this.jobService = new JobService();
   }
   getJob = async (req, res) => {
-    res.send("one job");
+    const job = await this.jobService.getJob(req.params.id, req.user._id);
+    res.status(StatusCodes.OK).json({ job });
   };
   getAllJobs = async (req, res) => {
     const jobs = await this.jobService.getJobs(req.user._id);

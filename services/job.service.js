@@ -11,8 +11,8 @@ class JobService {
   getJobs(userId) {
     return this.jobRepo.findJobs(userId);
   }
-  getJob(id) {
-    return this.jobRepo.findById(id);
+  getJob(id, userId) {
+    return this.jobRepo.findOne({_id: id, createdBy: userId});
   }
   updateJob(id, data) {
     return this.jobRepo.findByIdAndUpdate(id, data, { new: true });
