@@ -1,5 +1,5 @@
 import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
-import UserService from "./UserService.js";
+import UserService from "./user.service.js";
 
 class AuthService {
   constructor() {

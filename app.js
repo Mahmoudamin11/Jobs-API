@@ -6,8 +6,8 @@ import express from "express";
 import connectDB from "./db/connect.js";
 
 // routers
-import authRouter from "./routes/auth.js";
-import jobRouter from "./routes/jobs.js";
+import authRouter from "./routes/auth.routes.js";
+import jobRouter from "./routes/jobs.routes.js";
 
 // error handler
 import notFoundMiddleware from "./middleware/not-found.js";

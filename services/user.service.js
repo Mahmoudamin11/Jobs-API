@@ -1,5 +1,4 @@
 import User from "../db/models/User.js";
-import UnauthenticatedError from "../errors/unauthenticated.js";
 
 class UserService {
   async findByEmail(email) {

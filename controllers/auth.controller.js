@@ -1,4 +1,4 @@
-import AuthService from "../services/AuthService.js";
+import AuthService from "../services/auth.service.js";
 import { StatusCodes } from "http-status-codes";
 
 class AuthController {
@@ -16,4 +16,4 @@ class AuthController {
   };
 }
 
-export default AuthController;
+export default new AuthController();
