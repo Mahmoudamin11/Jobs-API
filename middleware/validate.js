@@ -9,10 +9,10 @@ const validation = (schema) => (req, res, next) => {
     
     // Extract field errors
     const fieldErrors = Object.entries(flattened.fieldErrors)
-      .map(([field, messages]) => `${field}: ${messages.join(", ")}`)
+      .map(([_, messages]) => `${messages.join(", ")}`)
       .join(", ");
     
-    const errorMessage = fieldErrors || "Validation failed";
+    const errorMessage = fieldErrors || flattened.formErrors ||  "Validation failed";
     throw new BadRequestError(errorMessage);
   }
 

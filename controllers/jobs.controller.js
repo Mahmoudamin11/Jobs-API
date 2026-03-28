@@ -19,10 +19,16 @@ class JobController {
     res.status(StatusCodes.CREATED).json({ job });
   };
   updateJob = async (req, res) => {
-    res.send("job updated");
+    const job = await this.jobService.updateJob(
+      req.params.id,
+      req.user._id,
+      req.body,
+    );
+    res.status(StatusCodes.OK).json({ job });
   };
   deleteJob = async (req, res) => {
-    res.send("job deleted");
+    await this.jobService.deleteJob(req.params.id, req.user._id);
+    res.status(StatusCodes.OK).json({ msg: "Job deleted" });
   };
 }
 

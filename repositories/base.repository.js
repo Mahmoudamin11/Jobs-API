@@ -18,9 +18,25 @@ class BaseRepository {
     if (!job) throw new NotFoundError("Job not found");
     return job;
   }
-  async create() {}
-  async update() {}
-  async delete() {}
+  async deleteOne(data) {
+    const job = await this.model.deleteOne(data);
+    if (!job) throw new NotFoundError("Job not found");
+    return job;
+  }
+
+  async updateOne(filters = {}, data) {
+    const job = await this.model.findByIdAndUpdate(filters, data, {
+      new: true,
+      runValidators: true,
+    });
+    if (!job) throw new NotFoundError("Job not found");
+    return job;
+  }
+  async findByIdAndDelete(filters = {}) {
+    const job = await this.model.findByIdAndDelete(filters);
+    if (!job) throw new NotFoundError("Job not found");
+    return job;
+  }
 }
 
 export default BaseRepository;

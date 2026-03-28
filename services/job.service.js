@@ -2,7 +2,7 @@ import JobRepository from "../repositories/job.repository.js";
 
 class JobService {
   constructor() {
-    this.jobRepo = new JobRepository()
+    this.jobRepo = new JobRepository();
   }
 
   createJob(user, data) {
@@ -12,13 +12,16 @@ class JobService {
     return this.jobRepo.findJobs(userId);
   }
   getJob(id, userId) {
-    return this.jobRepo.findOne({_id: id, createdBy: userId});
+    return this.jobRepo.findOne({ _id: id, createdBy: userId });
   }
-  updateJob(id, data) {
-    return this.jobRepo.findByIdAndUpdate(id, data, { new: true });
+  updateJob(id, userId, body) {
+    const data = { company: body.company, position: body.position };
+    if (!body.company) delete data.company;
+    if (!body.position) delete data.position;
+    return this.jobRepo.updateOne({ _id: id, createdBy: userId }, data);
   }
-  deleteJob(id) {
-    return this.jobRepo.findByIdAndDelete(id);
+  deleteJob(id, userId) {
+    return this.jobRepo.findByIdAndDelete({ _id: id, createdBy: userId });
   }
 }
 

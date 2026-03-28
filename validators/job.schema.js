@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const jobSchema = z.object({
+const createJobSchema = z.object({
   company: z
     .string({ required_error: "Please provide a company name" })
     .min(1, "Company cannot be empty")
@@ -18,4 +18,22 @@ const jobSchema = z.object({
     .default("pending"),
 });
 
-export default jobSchema;
+const updateJobSchema = z
+  .object({
+    company: z
+      .string()
+      .min(1, "Company cannot be empty")
+      .max(50, "Company cannot exceed 50 characters")
+      .optional(),
+
+    position: z
+      .string()
+      .min(1, "Position cannot be empty")
+      .max(100, "Position cannot exceed 100 characters")
+      .optional(),
+  })
+  .refine((data) => Object.keys(data).length > 0, {
+    message: "At least one field must be provided for update",
+  });
+
+export { createJobSchema, updateJobSchema };
